@@ -10,12 +10,12 @@ o Make list items dragable and sortable
 */
 
 import React, {Component} from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import Todo from './todo.js'
 import Header from './header.js'
 
-var idCounter = 0;
+
 const initialState= {
       idCounter:0,
       name:'',
@@ -34,6 +34,7 @@ const cachedHits = cache.getItem(key);
 
 class App extends Component {
     state =  cachedHits? JSON.parse(cachedHits) : initialState;
+
 addTodo = () =>{
   const todos = this.state.todo;
   const counter=this.state.idCounter
@@ -42,9 +43,6 @@ addTodo = () =>{
     todo:todos,
     idCounter:counter+1
   })
-
-let data = cache.getItem(key)
-console.log(JSON.parse(data));
 }
 
 deleteTodo = () =>{
@@ -59,10 +57,6 @@ deleteTodo = () =>{
 todo
 })
 }
-
-      console.log(todo);
-
-console.log(this.state);
 }
 
 onChange = (e) => {
@@ -102,14 +96,12 @@ updateDescription = (e, id) => {
 
 
 handleClick = (e, id) => {
-  console.log(id);
   const list3 = this.state.todo.map((item, j) => {
     if (item.id === id) {
       item.status = !item.status;
     }
       return item;
   });
-  console.log(list3);
 this.setState({
       todo:list3
 })
@@ -131,16 +123,14 @@ selectAll = () => {
 //Sorting/ordering based on priority
 
 componentWillUpdate(nextProps, nextState) {
-  console.log('logging old state');
-console.log(nextState);
 cache.setItem(key, JSON.stringify(nextState));
 }
 
-componentDidUpdate(prevProps, prevState){
-if(cachedHits){
-  console.log();
-}
-}
+// componentDidUpdate(prevProps, prevState){
+// if(cachedHits){
+//
+// }
+// }
 
 render(){
   return (

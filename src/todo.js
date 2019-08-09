@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import ToDoItem from './toDoItem.js'
 import Checkbox from './checkbox.js'
 
+//convert back to functional compoenet?
 class Todo extends Component {
 // const Todo = ({item, onChange}) => {
 constructor(props) {
     super(props);
-    // this.state = {
-    //   status: false,
-    //   deadline: ''
-    // }
+    this.state = {
+      status: false,
+      deadline: ''
+    }
 }
 
 render(){
