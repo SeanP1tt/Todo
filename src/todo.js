@@ -6,10 +6,10 @@ class Todo extends Component {
 // const Todo = ({item, onChange}) => {
 constructor(props) {
     super(props);
-    this.state = {
-      status: false,
-      deadline: ''
-    }
+    // this.state = {
+    //   status: false,
+    //   deadline: ''
+    // }
 }
 
 render(){

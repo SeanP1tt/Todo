@@ -1,3 +1,14 @@
+/*
+Sean Pitterson
+To Do List Application v1.0
+Currently able to create, select, delete, and edit todo list items
+Future Additions:
+o Settings page to adjust app color layout
+o Ability to prioritize list items
+o Addition of due dates for list items
+o Make list items dragable and sortable
+*/
+
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -25,14 +36,15 @@ class App extends Component {
     state =  cachedHits? JSON.parse(cachedHits) : initialState;
 addTodo = () =>{
   const todos = this.state.todo;
-  todos.push({id: idCounter+1, status:false});
+  const counter=this.state.idCounter
+  todos.push({id: counter+1, status:false});
   this.setState({
-    todo:todos
+    todo:todos,
+    idCounter:counter+1
   })
-idCounter++;
-console.log(this.state);
-let test = cache.getItem(key)
-console.log(JSON.parse(test));
+
+let data = cache.getItem(key)
+console.log(JSON.parse(data));
 }
 
 deleteTodo = () =>{
@@ -57,11 +69,10 @@ onChange = (e) => {
    this.setState({name: e.target.value})
 }
 
+
+
 updateTitle = (e, id) => {
-  // const todo = {...this.state.todo};
   let value = e.target.value;
-  console.log(value);
-  console.log(id);
   const list = this.state.todo.map((item, j) => {
     if (item.id === id) {
       item.title = value;
@@ -75,10 +86,7 @@ updateTitle = (e, id) => {
 }
 
 updateDescription = (e, id) => {
-  // const todo = {...this.state.todo};
   let value = e.target.value;
-  console.log(value);
-  console.log(id);
   const list2 = this.state.todo.map((item, j) => {
     if (item.id === id) {
       item.description = value;
@@ -86,12 +94,12 @@ updateDescription = (e, id) => {
       return item;
 
   });
-
   this.setState(
        {
         todo:list2
 })
 }
+
 
 handleClick = (e, id) => {
   console.log(id);
