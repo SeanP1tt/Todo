@@ -1,3 +1,8 @@
+/* Colors :{ Header: {background-colors: [#1D70A2, darkred, #AFAFAF, E67F0D, 4C061D]},
+Lines: {background-colors: [#191716, lightblue, #A5AD3A, #557F2D, #190F1E ]},
+ Card: {background-colors: [#F9F393, white, #558564, #F4D995, #FFEEED ]}} */
+
+
 .App {
   text-align: center;
   height: 100%;
@@ -15,21 +20,6 @@ body {
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -44,8 +34,8 @@ ul {
 }
 
 header {
-  color: white;
-  background-color: darkred;
+  color: black;
+  background-color: #E67F0D;
   display: inline-block;
   width: 100%;
   border: 1px solid black;
@@ -56,15 +46,15 @@ header button,h1 {
 header button {
  /* Green */
  border-radius: 10%;
-  color: black;
+  color: inherit;
   margin: 2%;
   text-align: center;
   font-size: 12px;
 }
 
 header input[type='text'] {
-  background-color: darkred;
-  color: white;
+  background-color: inherit;
+  color: inherit;
   border: none;
   font-size: 16px;
   width: 60%;
@@ -76,10 +66,10 @@ ul{
 .card {
 width: 100%;
 border: 1px solid black;
-border-bottom-color: lightblue;
+border-bottom-color: #557F2D;
 border-top: 0px;
 box-shadow: 1px 0px #888888;
-background-color: #F9F393;
+background-color: #F4D995;
 }
 .card input[type="text"], textarea {
   display: block;
@@ -87,13 +77,14 @@ background-color: #F9F393;
   border-left: none;
   border-right: none;
   background-color: inherit;
-  border-bottom-color: lightblue;
   width: 100%;
-  border-left: 1px solid lightblue;
+  border-left: 1px solid #190F1E;
   resize: none;
   overflow-y:scroll;
   padding:0;
   height: 40%;
+  border-bottom: 1px solid #190F1E;
+  border-color: #557F2D;
 }
 
 textarea {
@@ -115,6 +106,14 @@ textarea {
   float: left;
   text-align: center;
   vertical-align: middle;
+}
+
+.left button {
+  display: block;
+  margin: 0 auto;
+  background-color: inherit;
+  border: none;
+  color: #557F2D;
 }
 
 input:focus,

@@ -5,6 +5,7 @@ import Checkbox from './checkbox.js'
 //convert back to functional compoenet?
 class Todo extends Component {
 // const Todo = ({item, onChange}) => {
+//add colors
 constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +26,9 @@ render(){
        </div>
        <div className='left'>
        <Checkbox status={item.status} onClick={(e, id)=>{this.props.onClick(e, item.id)}} identifier={item.id} key={'a'+item.id} />
+       <button><i className="fas fa-exclamation"></i> </button>
+       <button><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i>  </button>
+       <button><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i></button>
        </div>
        </li>
        </div>
