@@ -1,13 +1,34 @@
-/* Colors :{ Header: {background-colors: [#1D70A2, darkred, #AFAFAF, E67F0D, 4C061D]},
+/* Colors :{ Header: {background-colors: [#1D70A2, darkred, #AFAFAF, #E67F0D, 4C061D]},
 Lines: {background-colors: [#191716, lightblue, #A5AD3A, #557F2D, #190F1E ]},
  Card: {background-colors: [#F9F393, white, #558564, #F4D995, #FFEEED ]}} */
 
+html, body, #root {height: 100%;}
+
+.preset1{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.hide {
+  display: none;
+}
+
+.preset1 header{
+  background-color:#1D70A2;
+  padding: 1%;
+}
+
+.preset1 .card, .right input[type="text"], textarea{
+border-color: #191716 !important;
+background-color: #F9F393;
+}
 
 .App {
   text-align: center;
   height: 100%;
-width: 50%;
+width: 75%;
 margin: 0 auto;
+display: flex;
 }
 
 body {
@@ -70,6 +91,7 @@ border-bottom-color: #557F2D;
 border-top: 0px;
 box-shadow: 1px 0px #888888;
 background-color: #F4D995;
+padding: 1%;
 }
 .card input[type="text"], textarea {
   display: block;
@@ -113,7 +135,7 @@ textarea {
   margin: 0 auto;
   background-color: inherit;
   border: none;
-  color: #557F2D;
+  color: inherit;
 }
 
 input:focus,
@@ -125,4 +147,22 @@ button:focus {
 
 input[type=checkbox]:checked + textarea + .card input[type="text"]{
   text-decoration: line-through;
+}
+
+.settings {
+  height: 100%;
+  border: 1px solid black;
+  background-color: grey;
+
+}
+.settings button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
+.sidebar {
+  min-height: 100%;
+    width: 35%;
+  height: 100%;
 }

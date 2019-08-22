@@ -14,19 +14,38 @@ import React, {Component} from 'react';
 import './App.css';
 import Todo from './todo.js'
 import Header from './header.js'
+import Setting from './settings.js'
 
 
 const initialState= {
       idCounter:0,
       name:'',
       allSelected: false,
+      showSettings:false,
       todo:[{
         id:0,
         title:'',
         description:'',
         status: false,
         priority: 0
-      }]
+      }],
+      presets: [
+        {
+        name: 'preset1', isClicked: false
+      },
+      {
+      name: 'preset2', isClicked: false
+    },
+    {
+    name: 'preset3', isClicked: false
+  },
+  {
+  name: 'preset4', isClicked: false
+},
+{
+name: 'preset5', isClicked: false
+},
+    ]
 };
 const cache= localStorage
 const key='cachedState';
@@ -34,6 +53,15 @@ const cachedHits = cache.getItem(key);
 
 class App extends Component {
     state =  cachedHits? JSON.parse(cachedHits) : initialState;
+
+
+toggleSettings = () => {
+  let settings = this.state.showSettings;
+  console.log(settings);
+this.setState({
+  showSettings: !settings
+})
+}
 
 addTodo = () =>{
   const todos = this.state.todo;
@@ -47,16 +75,8 @@ addTodo = () =>{
 
 deleteTodo = () =>{
   const todo = this.state.todo.filter((item) => item.status !== true);
-  if(this.state.allSelected===true){
-    this.setState({
-  todo,
-  allSelected:false
-})
-} else {
-  this.setState({
-todo
-})
-}
+  const trueState = {todo,allSelected:false}
+  this.state.allSelected===true? this.setState(trueState):   this.setState({todo})
 }
 
 onChange = (e) => {
@@ -131,14 +151,30 @@ cache.setItem(key, JSON.stringify(nextState));
 //
 // }
 // }
+swap = (a,b) => {
+  let start = this.state.todo.findIndex(e => e.id == a);
+  let end= this.state.todo.findIndex(e => e.id == b);
+  let list= this.state.todo.map(e => e);
+  let pos1 = list[start];
+   list[start]= list[end];
+   list[end]=pos1;
+  this.setState({todo: list})
+  // console.log([this.state.todo[end] , this.state.todo[start] ]);
+}
 
 render(){
   return (
-    <div className="App">
-        <Header name={this.state.name} addTodo={this.addTodo} onChange={this.onChange} deleteTodo={this.deleteTodo} selectAll={this.selectAll} allSelected={this.state.allSelected}/>
-        <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} />
- 
+  <div className="App">
+ <div className={this.state.showSettings?"sidebar":"hide"}>
+    <Setting presets={this.state.presets}/>
+  </div>
+    <div className="preset1">
+        <Header name={this.state.name} addTodo={this.addTodo} onChange={this.onChange} deleteTodo={this.deleteTodo} selectAll={this.selectAll} allSelected={this.state.allSelected} class='preset1' toggleSettings={this.toggleSettings}/>
+        <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} class='preset1' swap={this.swap}/>
     </div>
+
+
+</div>
   );
 }
 }

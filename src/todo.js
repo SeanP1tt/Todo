@@ -9,17 +9,34 @@ class Todo extends Component {
 constructor(props) {
     super(props);
     this.state = {
-      status: false,
-      deadline: ''
+      buttons: [{number:0, class: "preset1"}],
+      targetbox: null
     }
 }
 
+dragEnd = (e) => {
+    this.setState({targetbox: null})
+  }
+dragStart = (e) => {
+  console.log(e.target);
+    e.dataTransfer.setData("text", e.target.id)
+    this.setState({targetbox: true})
+  }
+drop = (e) => {
+  console.log(e.target);
+    if (e.target.id) {
+      this.props.swap(e.dataTransfer.getData("text"), e.target.id)
+      e.dataTransfer.clearData()
+    }
+  }
+priorityClicked = () => {
+
+}
 render(){
   return (<ul>
   {
-
      this.props.item.map((item,id) => (
-       <div className='card' key={'b'+item.id}>
+       <div className='card' key={'b'+item.id} id={item.id} draggable={true} onDragOver={(event) => event.preventDefault()} onDragStart={this.dragStart} onDrop={this.drop}  onDragEnd={this.dragEnd}>
        <li>
        <div className='right'>
        <ToDoItem description={item.description} title={item.title} onChange={(e,id)=> {this.props.onChange(e, item.id)}} onUpdate={(e,id)=> {this.props.onUpdate(e, item.id)}} identifier={item.id} status={item.status}  key={id} />
