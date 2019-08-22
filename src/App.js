@@ -29,24 +29,28 @@ const initialState= {
         status: false,
         priority: 0
       }],
-      presets: [
+      presets: [{
+          name: 'Preset 1',
+          isClicked: false
+        },
         {
-        name: 'preset1', isClicked: false
-      },
-      {
-      name: 'preset2', isClicked: false
-    },
-    {
-    name: 'preset3', isClicked: false
-  },
-  {
-  name: 'preset4', isClicked: false
-},
-{
-name: 'preset5', isClicked: false
-},
-    ]
-};
+          name: 'Preset 2',
+          isClicked: false
+        },
+        {
+          name: 'Preset 3',
+          isClicked: false
+        },
+        {
+          name: 'Preset 4',
+          isClicked: false
+        },
+        {
+          name: 'Preset 5',
+          isClicked: false
+        }],
+        sortOptions: ["default", "priority", "due date"]
+      };
 const cache= localStorage
 const key='cachedState';
 const cachedHits = cache.getItem(key);
@@ -152,8 +156,8 @@ cache.setItem(key, JSON.stringify(nextState));
 // }
 // }
 swap = (a,b) => {
-  let start = this.state.todo.findIndex(e => e.id == a);
-  let end= this.state.todo.findIndex(e => e.id == b);
+  let start = this.state.todo.findIndex(e => e.id === a);
+  let end= this.state.todo.findIndex(e => e.id === b);
   let list= this.state.todo.map(e => e);
   let pos1 = list[start];
    list[start]= list[end];
@@ -166,15 +170,13 @@ render(){
   return (
   <div className="App">
  <div className={this.state.showSettings?"sidebar":"hide"}>
-    <Setting presets={this.state.presets}/>
+ <Setting presets={this.state.presets} options={this.state.sortOptions}/>
   </div>
-    <div className="preset1">
-        <Header name={this.state.name} addTodo={this.addTodo} onChange={this.onChange} deleteTodo={this.deleteTodo} selectAll={this.selectAll} allSelected={this.state.allSelected} class='preset1' toggleSettings={this.toggleSettings}/>
-        <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} class='preset1' swap={this.swap}/>
-    </div>
-
-
-</div>
+  <div className="preset1">
+  <Header name={this.state.name} addTodo={this.addTodo} onChange={this.onChange} deleteTodo={this.deleteTodo} selectAll={this.selectAll} allSelected={this.state.allSelected} class='preset1' toggleSettings={this.toggleSettings}/>
+  <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} class='preset1' swap={this.swap}/>
+  </div>
+  </div>
   );
 }
 }

@@ -29,6 +29,7 @@ background-color: #F9F393;
 width: 75%;
 margin: 0 auto;
 display: flex;
+margin-top: 1%;
 }
 
 body {
@@ -153,6 +154,7 @@ input[type=checkbox]:checked + textarea + .card input[type="text"]{
   height: 100%;
   border: 1px solid black;
   background-color: grey;
+  margin-right: 3%;
 
 }
 .settings button {

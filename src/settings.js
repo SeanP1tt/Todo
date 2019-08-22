@@ -1,16 +1,20 @@
 import React from 'react';
 
-const Settings = ({toggleSettings, presets}) => {
+const Settings = ({toggleSettings, presets, options}) => {
 return (
   <div className='settings'>
   <h1> Todo List Settings </h1>
   <p> Select your color preset: </p>
-  {console.log(presets)}
-  <button>Preset 1</button>
-  <button>Preset 2</button>
-  <button>Preset 3</button>
-  <button>Preset 4</button>
-  <button>Preset 5</button>
+  {presets.map((item, index) => (
+    <button value={item.name} key={index}>{item.name}</button>
+  ))}
+  <br/>
+  <p> Sort your list by: </p>
+  <select>
+  {options.map((item, index) => (
+    <option key={index} value={item}>{item}</option>
+  ))}
+  </select>
   </div>
 )
 }
