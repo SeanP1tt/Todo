@@ -7,9 +7,15 @@ o Settings page to adjust app color layout
 o Ability to prioritize list items
 o Addition of due dates for list items
 o Make list items dragable and sortable
+
+Add it to personal site
+Add pages
+Add state management
+Fix sorting and presets
 */
 
 import React, {Component} from 'react';
+import styled from 'styled-components';
 
 import './App.css';
 import Todo from './todo.js'
@@ -30,23 +36,23 @@ const initialState= {
         priority: 0
       }],
       presets: [{
-          name: 'Preset 1',
+          name: '1',
           isClicked: false
         },
         {
-          name: 'Preset 2',
+          name: '2',
           isClicked: false
         },
         {
-          name: 'Preset 3',
+          name: '3',
           isClicked: false
         },
         {
-          name: 'Preset 4',
+          name: '4',
           isClicked: false
         },
         {
-          name: 'Preset 5',
+          name: '5',
           isClicked: false
         }],
         sortOptions: ["default", "priority", "due date"]
@@ -166,13 +172,18 @@ swap = (a,b) => {
   // console.log([this.state.todo[end] , this.state.todo[start] ]);
 }
 
+presetClick = (e) => {
+  console.log(e.target.value);
+  console.log(this)
+}
+
 render(){
   return (
   <div className="App">
  <div className={this.state.showSettings?"sidebar":"hide"}>
- <Setting presets={this.state.presets} options={this.state.sortOptions}/>
+ <Setting presets={this.state.presets} options={this.state.sortOptions} onClick={this.presetClick}/>
   </div>
-  <div className="preset1">
+  <div className="preset2">
   <Header name={this.state.name} addTodo={this.addTodo} onChange={this.onChange} deleteTodo={this.deleteTodo} selectAll={this.selectAll} allSelected={this.state.allSelected} class='preset1' toggleSettings={this.toggleSettings}/>
   <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} class='preset1' swap={this.swap}/>
   </div>
