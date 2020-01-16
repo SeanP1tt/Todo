@@ -3,19 +3,14 @@ Sean Pitterson
 To Do List Application v1.0
 Currently able to create, select, delete, and edit todo list items
 Future Additions:
-o Settings page to adjust app color layout
 o Ability to prioritize list items
 o Addition of due dates for list items
-o Make list items dragable and sortable
 
-Add it to personal site
 Add pages
 Add state management
-Fix sorting and presets
 */
 
 import React, {Component} from 'react';
-import styled from 'styled-components';
 
 import './App.css';
 import Todo from './todo.js'
@@ -36,24 +31,29 @@ const initialState= {
         priority: 0
       }],
       presets: [{
-          name: '1',
-          isClicked: false
+        name: 'Blue & Yellow',
+          id: '1',
+          active: true
         },
         {
-          name: '2',
-          isClicked: false
+          name: 'Red & White',
+          id: '2',
+          active: false
         },
         {
-          name: '3',
-          isClicked: false
+          name: 'Grey & Green',
+          id: '3',
+          active: false
         },
         {
-          name: '4',
-          isClicked: false
+          name: 'Orange & Yellow',
+          id: '4',
+          active: false
         },
         {
-          name: '5',
-          isClicked: false
+          name: 'Burgundy & Pink',
+          id: '5',
+          active: false
         }],
         sortOptions: ["default", "priority", "due date"]
       };
@@ -67,7 +67,6 @@ class App extends Component {
 
 toggleSettings = () => {
   let settings = this.state.showSettings;
-  console.log(settings);
 this.setState({
   showSettings: !settings
 })
@@ -173,19 +172,36 @@ swap = (a,b) => {
 }
 
 presetClick = (e) => {
-  console.log(e.target.value);
-  console.log(this)
+  let clicked = (e.target.value);
+  let {presets} = this.state
+  let result = presets.map(element => {
+    if(element.active){
+      element.active=false
+    }
+    if(element.id===clicked){
+      element.active = !element.active
+    }
+    return element
+  });
+  this.setState({presets: result})
+}
+
+priorityClicked = (e) => {
+  let clicked = (e.target);
+  let buttonNum = clicked.name;
+  this.setState({priority: [{name: buttonNum, clicked: true}]})
 }
 
 render(){
+  let themeNum = this.state.presets.filter(preset => preset.active !== false);
   return (
   <div className="App">
  <div className={this.state.showSettings?"sidebar":"hide"}>
  <Setting presets={this.state.presets} options={this.state.sortOptions} onClick={this.presetClick}/>
   </div>
-  <div className="preset2">
+  <div className={'preset' + themeNum[0].id} >
   <Header name={this.state.name} addTodo={this.addTodo} onChange={this.onChange} deleteTodo={this.deleteTodo} selectAll={this.selectAll} allSelected={this.state.allSelected} class='preset1' toggleSettings={this.toggleSettings}/>
-  <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} class='preset1' swap={this.swap}/>
+  <Todo item={this.state.todo} onChange={this.updateTitle} onUpdate={this.updateDescription} onClick={this.handleClick} class='preset1' swap={this.swap} priorityClicked={this.priorityClicked} />
   </div>
   </div>
   );

@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import ToDoItem from './toDoItem.js'
 import Checkbox from './checkbox.js'
 
-//convert back to functional compoenet?
+// let futureImprovement = (<button name='1' onClick={(e)=>{this.props.priorityClicked(e)}}><i className="fas fa-exclamation" ></i> </button>
+// <button  name='2'onClick={(e)=>{this.props.priorityClicked(e)}}><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i>  </button>
+// <button name='3' onClick={(e)=>{this.props.priorityClicked(e)}}><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i></button>)
+
 class Todo extends Component {
-// const Todo = ({item, onChange}) => {
-//add colors
+
 constructor(props) {
     super(props);
     this.state = {
@@ -29,10 +31,9 @@ drop = (e) => {
       e.dataTransfer.clearData()
     }
   }
-priorityClicked = () => {
 
-}
 render(){
+  
   return (<ul>
   {
      this.props.item.map((item, id) => (
@@ -43,9 +44,7 @@ render(){
        </div>
        <div className='left'>
        <Checkbox status={item.status} onClick={(e, id)=>{this.props.onClick(e, item.id)}} identifier={item.id} key={'a'+item.id} />
-       <button><i className="fas fa-exclamation" ></i> </button>
-       <button><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i>  </button>
-       <button><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i><i className="fas fa-exclamation"></i></button>
+       
        </div>
        </li>
        </div>

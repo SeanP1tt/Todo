@@ -4,61 +4,23 @@ Lines: {background-colors: [#191716, lightblue, #A5AD3A, #557F2D, #190F1E ]},
 
 html, body, #root {height: 100%;}
 
-.red{
-  color: crimson !important;
+.preset1{
+  width: 80%;
+  margin: 0 auto;
 }
 
 .hide {
   display: none;
 }
 
-.preset1, .preset2, .preset3, .preset4, .preset5 {
-  width: 80%;
-  margin: 0 auto;
-}
 .preset1 header{
   background-color:#1D70A2;
   padding: 1%;
 }
+
 .preset1 .card, .right input[type="text"], textarea{
 border-color: #191716 !important;
 background-color: #F9F393;
-}
-
-.preset2 header{
-  background-color: darkred;
-  padding: 1%;
-}
-.preset2 .card, .right input[type="text"], textarea{
-border-color: lightblue!important;
-background-color: white;
-}
-
-.preset3 header{
-  background-color:#AFAFAF;
-  padding: 1%;
-}
-.preset3 .card, .right input[type="text"], textarea{
-border-color: #A5AD3A !important;
-background-color: #558564;
-}
-
-.preset4 header{
-  background-color:#E67F0D;
-  padding: 1%;
-}
-.preset4 .card, .right input[type="text"], textarea{
-border-color: #557F2D !important;
-background-color: #F4D995;
-}
-
-.preset5 header{
-  background-color:#4C061D;
-  padding: 1%;
-}
-.preset5 .card, .right input[type="text"], textarea{
-border-color: #190F1E !important;
-background-color: #FFEEED;
 }
 
 .App {
@@ -142,8 +104,7 @@ padding: 1%;
   border-left: 1px solid #190F1E;
   resize: none;
   overflow-y:scroll;
-  padding: 1%;
-  padding-right: 0;
+  padding:0;
   height: 40%;
   border-bottom: 1px solid #190F1E;
   border-color: #557F2D;
@@ -154,7 +115,7 @@ textarea {
 }
 
 .card input[type="checkbox"]{
-  margin: 50% auto;
+
 }
 .right{
   width: 90%;
